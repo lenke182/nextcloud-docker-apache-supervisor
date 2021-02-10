@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag nextcloud-docker-apache-supervisor
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.2.2
+      with:
+        # Always attempt to pull a newer version of the image
+        pull: true
+        # Do not use cache when building the image
+        no-cache: true
+      #run: docker build . --file Dockerfile --tag nextcloud-docker-apache-supervisor
